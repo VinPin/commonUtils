@@ -5,7 +5,7 @@ Android 收集常用的工具类的库
 
 Gradle:
 ```groovy
-compile 'com.blankj:utilcode:1.12.5'
+compile 'com.vinpin:commonutils:1.0.0'
 ```
 
 ## 开始使用
