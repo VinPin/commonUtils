@@ -8,7 +8,7 @@ import java.util.Stack;
  * activity堆栈式管理
  *
  * @author zwp
- *         create at 2017/8/15 10:00
+ * create at 2017/8/15 10:00
  */
 public final class AppManager {
 
@@ -39,6 +39,9 @@ public final class AppManager {
      * 添加Activity到堆栈
      */
     public void addActivity(Activity activity) {
+        if (activityStack == null) {
+            return;
+        }
         activityStack.add(activity);
     }
 
@@ -58,6 +61,9 @@ public final class AppManager {
      * 获取当前Activity（堆栈中最后一个压入的）
      */
     public Activity currentActivity() {
+        if (activityStack == null) {
+            return null;
+        }
         return activityStack.lastElement();
     }
 
@@ -65,6 +71,9 @@ public final class AppManager {
      * 结束当前Activity（堆栈中最后一个压入的）
      */
     public void finishActivity() {
+        if (activityStack == null) {
+            return;
+        }
         Activity activity = activityStack.lastElement();
         finishActivity(activity);
     }
@@ -73,7 +82,7 @@ public final class AppManager {
      * 结束指定的Activity
      */
     public void finishActivity(Activity activity) {
-        if (activity != null) {
+        if (activity != null && activityStack != null) {
             activityStack.remove(activity);
             activity.finish();
         }
@@ -83,6 +92,9 @@ public final class AppManager {
      * 结束指定类名的Activity
      */
     public void finishActivity(Class<?> cls) {
+        if (activityStack == null) {
+            return;
+        }
         for (Activity activity : activityStack) {
             if (activity.getClass().equals(cls)) {
                 finishActivity(activity);
@@ -95,6 +107,9 @@ public final class AppManager {
      * 是否包含指定的activity
      */
     public boolean hasActivity(Class<?> cls) {
+        if (activityStack == null) {
+            return false;
+        }
         for (Activity activity : activityStack) {
             if (activity.getClass().equals(cls)) {
                 return true;
@@ -121,7 +136,10 @@ public final class AppManager {
      * 结束所有Activity
      */
     public void finishAllActivity() {
-        for (int i = 0, size = activityStack.size(); i < size; i++) {
+        if (activityStack == null) {
+            return;
+        }
+        for (int i = 0; i < activityStack.size(); i++) {
             if (null != activityStack.get(i)) {
                 activityStack.get(i).finish();
             }
@@ -162,6 +180,6 @@ public final class AppManager {
      * 获取Activity数量
      */
     public int getActivityCount() {
-        return activityStack.size();
+        return activityStack != null ? activityStack.size() : 0;
     }
 }

@@ -2,6 +2,7 @@ package com.vinpin.commonutils;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +24,7 @@ import java.util.List;
  * App相关工具类
  *
  * @author zwp
- *         create at 2017/8/15 10:00
+ * create at 2017/8/15 10:00
  */
 public final class AppUtils {
 
@@ -185,7 +186,9 @@ public final class AppUtils {
      * @return {@code true}: 是<br>{@code false}: 否
      */
     public static boolean isActivityForeground(@NonNull Activity activity) {
-        if (TextUtils.isEmpty(activity.getClass().getName())) return false;
+        if (TextUtils.isEmpty(activity.getClass().getName())) {
+            return false;
+        }
         ActivityManager am = (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> taskList = null;
         if (am != null) {
@@ -228,7 +231,7 @@ public final class AppUtils {
     /**
      * 跳转应用信息界面
      */
-    public static void toAppSetingInfo(Context context) {
+    public static void toAppSetingInfo(@NonNull Context context) {
         Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.setData(Uri.fromParts("package", context.getPackageName(), null));
@@ -238,10 +241,14 @@ public final class AppUtils {
     /**
      * 打开浏览器
      */
-    public static void openBrowser(Context context, @NonNull String url) {
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.VIEW");
-        intent.setData(Uri.parse(url));
-        context.startActivity(intent);
+    public static void openBrowser(@NonNull Context context, @NonNull String url) {
+        try {
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            intent.setData(Uri.parse(url));
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
