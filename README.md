@@ -5,7 +5,7 @@ Android 收集常用的工具类的库
 
 Gradle:
 ```groovy
-compile 'com.vinpin:commonutils:1.0.0'
+compile 'com.vinpin:commonutils:1.0.2'
 ```
 
 ## 开始使用
@@ -162,9 +162,10 @@ setUnderline       : 设置下划线
 create             : 创建样式字符串
 ```
 
-* ### [StatusBarCompat.java][statusBarCompat.java]
+* ### [StatusBarUtils.java][statusBarUtils.java]
 ```
-setStatusBarColor : 设置系统状态栏的颜色，setContentView()之后
+setStatusBarColor     : 设置系统状态栏的颜色
+setStatusBarLightMode : 设置亮色状态栏模式
 ```
 
 * ### [StringUtils.java][stringUtils.java]
@@ -200,6 +201,6 @@ getStandardTime : 将日期格式化成 yyyy-MM-dd HH:mm
 [sdCardUtils.java]: https://github.com/VinPin/commonUtils/blob/master/common-utils/src/main/java/com/vinpin/commonutils/SDCardUtils.java
 [sizeUtils.java]: https://github.com/VinPin/commonUtils/blob/master/common-utils/src/main/java/com/vinpin/commonutils/SizeUtils.java
 [spanUtils.java]: https://github.com/VinPin/commonUtils/blob/master/common-utils/src/main/java/com/vinpin/commonutils/SpanUtils.java
-[statusBarCompat.java]: https://github.com/VinPin/commonUtils/blob/master/common-utils/src/main/java/com/vinpin/commonutils/StatusBarCompat.java
+[statusBarUtils.java]: https://github.com/VinPin/commonUtils/blob/master/common-utils/src/main/java/com/vinpin/commonutils/StatusBarUtils.java
 [stringUtils.java]: https://github.com/VinPin/commonUtils/blob/master/common-utils/src/main/java/com/vinpin/commonutils/StringUtils.java
 [timeUtils.java]: https://github.com/VinPin/commonUtils/blob/master/common-utils/src/main/java/com/vinpin/commonutils/TimeUtils.java
