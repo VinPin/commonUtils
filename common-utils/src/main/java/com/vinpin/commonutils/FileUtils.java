@@ -10,7 +10,7 @@ import java.io.IOException;
  * 文件相关工具类
  *
  * @author zwp
- *         create at 2017/8/15 10:00
+ * create at 2017/8/15 10:00
  */
 public final class FileUtils {
 
@@ -216,23 +216,39 @@ public final class FileUtils {
 
     /**
      * 字节数转合适内存大小
-     * <p>保留3位小数</p>
+     * <p>保留2位小数</p>
      *
      * @param byteNum 字节数
      * @return 合适内存大小
      */
     @SuppressLint("DefaultLocale")
     public static String byte2FitMemorySize(final long byteNum) {
+        return byte2FitMemorySize(byteNum, 2);
+    }
+
+    /**
+     * 字节数转合适内存大小
+     *
+     * @param byteNum  字节数
+     * @param decimals 保留小数点位数，至少大于0
+     * @return 合适内存大小
+     */
+    @SuppressLint("DefaultLocale")
+    public static String byte2FitMemorySize(final long byteNum, int decimals) {
+        if (decimals < 1) {
+            return "shouldn't be less than one!";
+        }
+        String format = "%." + decimals + "f";
         if (byteNum < 0) {
             return "shouldn't be less than zero!";
         } else if (byteNum < 1024) {
-            return String.format("%.3fB", (double) byteNum + 0.0005);
+            return String.format(format + "B", (double) byteNum);
         } else if (byteNum < 1048576) {
-            return String.format("%.3fKB", (double) byteNum / 1024 + 0.0005);
+            return String.format(format + "KB", (double) byteNum / 1024);
         } else if (byteNum < 1073741824) {
-            return String.format("%.3fMB", (double) byteNum / 1048576 + 0.0005);
+            return String.format(format + "MB", (double) byteNum / 1048576);
         } else {
-            return String.format("%.3fGB", (double) byteNum / 1073741824 + 0.0005);
+            return String.format(format + "GB", (double) byteNum / 1073741824);
         }
     }
 }
