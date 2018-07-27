@@ -11,7 +11,7 @@ import java.io.File;
  * 手机SD卡管理工具
  *
  * @author zwp
- *         create at 2017/8/15 10:00
+ * create at 2017/8/15 10:00
  */
 public class SDCardUtils {
 
@@ -45,16 +45,21 @@ public class SDCardUtils {
      *
      * @return SD卡剩余空间
      */
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static String getFreeSpace() {
+    public static long getFreeSpace() {
         if (!isSDCardEnable()) {
-            return null;
+            return 0;
         }
-        StatFs stat = new StatFs(getSDCardPath());
-        long blockSize, availableBlocks;
-        availableBlocks = stat.getAvailableBlocksLong();
-        blockSize = stat.getBlockSizeLong();
-        return FileUtils.byte2FitMemorySize(availableBlocks * blockSize);
+        StatFs statfs = new StatFs(getSDCardPath());
+        long availableBlocksLong;
+        long blockSizeLong;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            availableBlocksLong = statfs.getAvailableBlocksLong();
+            blockSizeLong = statfs.getBlockSizeLong();
+        } else {
+            availableBlocksLong = statfs.getAvailableBlocks();
+            blockSizeLong = statfs.getBlockSize();
+        }
+        return availableBlocksLong * blockSizeLong;
     }
 
     /**
@@ -62,15 +67,26 @@ public class SDCardUtils {
      *
      * @return 目录path路径
      */
-    public static String getCachePath() {
+    public static String getRootCachePath() {
         String cachePath;
         if (isSDCardEnable()) {
             // 获取到 SDCard/Android/data/你的应用的包名/files
-            cachePath = Utils.getApp().getExternalFilesDir(null) + File.separator + "cache";
+            cachePath = Utils.getApp().getExternalFilesDir(null) + "";
         } else {
             // 获取/data/data/<application package>/files
-            cachePath = Utils.getApp().getFilesDir() + File.separator + "cache";
+            cachePath = Utils.getApp().getFilesDir() + "";
         }
+        FileUtils.createOrExistsDir(cachePath);
+        return cachePath;
+    }
+
+    /**
+     * 获取app缓存存储根路径下cache文件夹下
+     *
+     * @return 目录path路径
+     */
+    public static String getCachePath() {
+        String cachePath = getRootCachePath() + File.separator + "cache";
         FileUtils.createOrExistsDir(cachePath);
         return cachePath;
     }

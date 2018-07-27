@@ -1,6 +1,7 @@
 package com.vinpin.commonutils;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -24,6 +25,7 @@ public final class FileUtils {
      * @param filePath 文件路径
      * @return 文件
      */
+    @Nullable
     public static File getFileByPath(final String filePath) {
         return TextUtils.isEmpty(filePath) ? null : new File(filePath);
     }
@@ -212,6 +214,47 @@ public final class FileUtils {
     public static boolean deleteFile(final String srcFilePath) {
         File file = getFileByPath(srcFilePath);
         return file != null && (!file.exists() || file.isFile() && file.delete());
+    }
+
+    /**
+     * 获得文件的大小
+     *
+     * @param filePath 文件路径
+     * @return 大小
+     */
+    public static long getFileLength(String filePath) {
+        File file = getFileByPath(filePath);
+        if (file != null && isFile(filePath)) {
+            return file.length();
+        } else {
+            return -1;
+        }
+    }
+
+    /**
+     * 获得文件夹的大小
+     *
+     * @param dirPath 文件夹路径
+     * @return 大小
+     */
+    public static long getDirLength(String dirPath) {
+        File dir = getFileByPath(dirPath);
+        if (dir != null && isDir(dirPath)) {
+            long len = 0;
+            File[] files = dir.listFiles();
+            if (files != null && files.length != 0) {
+                for (File file : files) {
+                    if (file.isDirectory()) {
+                        len += getDirLength(file.getPath());
+                    } else {
+                        len += file.length();
+                    }
+                }
+            }
+            return len;
+        } else {
+            return -1;
+        }
     }
 
     /**
