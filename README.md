@@ -5,7 +5,7 @@ Android 收集常用的工具类的库
 
 Gradle:
 ```groovy
-compile 'com.vinpin:commonutils:1.0.2'
+compile 'com.vinpin:commonutils:1.0.3'
 ```
 
 ## 开始使用
@@ -81,6 +81,8 @@ createOrExistsFile        : 判断文件是否存在，不存在则判断是否�
 createFileByDeleteOldFile : 判断文件是否存在，存在则在创建之前删除
 deleteDir                 : 删除目录
 deleteFile                : 删除文件
+getFileLength             : 获取文件大小
+getDirLength              : 获取文件夹大小
 byte2FitMemorySize        : 字节数转合适内存大小
 ```
 
@@ -131,10 +133,11 @@ getScreenParams : 获取屏幕相关的信息
 
 * ### [SDCardUtils.java][sdCardUtils.java]
 ```
-isSDCardEnable : 判断SD卡是否可用
-getSDCardPath  : 获取SD卡路径
-getFreeSpace   : 获取SD卡剩余空间
-getCachePath   : 获取app缓存存储根路径
+isSDCardEnable     : 判断SD卡是否可用
+getSDCardPath      : 获取SD卡路径
+getFreeSpace       : 获取SD卡剩余空间
+getRootCachePath   : 获取app缓存存储根路径
+getCachePath       : 获取app缓存存储根路径下cache文件夹下
 ```
 
 * ### [SizeUtils.java][sizeUtils.java]
