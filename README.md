@@ -5,7 +5,7 @@ Android 收集常用的工具类的库
 
 Gradle:
 ```groovy
-compile 'com.vinpin:commonutils:1.0.3'
+compile 'com.vinpin:commonutils:1.0.4'
 ```
 
 ## 开始使用
