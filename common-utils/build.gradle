@@ -38,7 +38,7 @@ publish {
     userOrg = 'vinpin'
     groupId = 'com.vinpin'
     artifactId = 'commonutils'
-    publishVersion = '1.0.4'
+    publishVersion = '1.0.5'
     desc = 'Android common utils code.'
     website = 'https://github.com/VinPin/commonUtils'
 }
