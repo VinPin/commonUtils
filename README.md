@@ -5,6 +5,9 @@ Android 收集常用的工具类的库
 
 Gradle:
 ```groovy
+// 支持AndroidX
+compile 'com.vinpin:commonutils:2.0.0'
+// 非支持AndroidX
 compile 'com.vinpin:commonutils:1.0.5'
 ```
 
