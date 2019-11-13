@@ -1,7 +1,7 @@
 package com.vinpin.commonutils;
 
 import android.app.Application;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Utils初始化相关

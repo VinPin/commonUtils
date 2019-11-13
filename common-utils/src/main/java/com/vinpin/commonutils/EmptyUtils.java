@@ -1,8 +1,8 @@
 package com.vinpin.commonutils;
 
 import android.os.Build;
-import android.support.v4.util.LongSparseArray;
-import android.support.v4.util.SimpleArrayMap;
+import androidx.collection.LongSparseArray;
+import androidx.collection.SimpleArrayMap;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;

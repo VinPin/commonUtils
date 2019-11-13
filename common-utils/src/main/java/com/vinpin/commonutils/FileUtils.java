@@ -1,7 +1,7 @@
 package com.vinpin.commonutils;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.io.File;

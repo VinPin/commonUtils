@@ -1,7 +1,7 @@
 package com.vinpin.commonutils;
 
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 
 /**
  * 资源工具类

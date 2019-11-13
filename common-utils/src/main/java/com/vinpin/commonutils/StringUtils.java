@@ -1,6 +1,6 @@
 package com.vinpin.commonutils;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * 字符串相关工具类
