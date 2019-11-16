@@ -1,4 +1,4 @@
-package com.vinpin.commonutils;
+package com.vinpin.commonutils.sample;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
